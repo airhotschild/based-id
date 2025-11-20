@@ -98,6 +98,26 @@ export async function POST(req: NextRequest) {
     }
 }
 
-export async function GET() {
-    return NextResponse.json({ message: 'Use POST to generate card' });
+export async function GET(req: NextRequest) {
+    try {
+        // For Frame preview, generate a default/promotional card
+        const result = {
+            score: 850,
+            rank: "Based AF",
+            badge: "🔥",
+            percentile: 95
+        };
+
+        // Generate the card image with default data
+        const imageResponse = generateCardImage({
+            username: "You",
+            pfpUrl: undefined,
+            result,
+        });
+
+        return imageResponse;
+    } catch (error) {
+        console.error('Error generating preview card:', error);
+        return NextResponse.json({ error: 'Failed to generate preview' }, { status: 500 });
+    }
 }
