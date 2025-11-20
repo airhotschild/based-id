@@ -8,7 +8,7 @@ interface CardData {
 }
 
 export function generateCardImage(data: CardData) {
-    // Select gradient based on score - more vibrant colors
+    // Select gradient based on score
     let gradient = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
     let accentColor = "#667eea";
     let secondaryColor = "#764ba2";
@@ -38,305 +38,124 @@ export function generateCardImage(data: CardData) {
                     height: '100%',
                     width: '100%',
                     display: 'flex',
-                    position: 'relative',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     background: gradient,
                     fontFamily: 'sans-serif',
                 }}
             >
-                {/* Decorative background circles */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '-100px',
-                        right: '-100px',
-                        width: '400px',
-                        height: '400px',
-                        borderRadius: '200px',
-                        background: `radial-gradient(circle, ${accentColor}40, transparent)`,
-                    }}
-                />
-                <div
-                    style={{
-                        position: 'absolute',
-                        bottom: '-150px',
-                        left: '-150px',
-                        width: '500px',
-                        height: '500px',
-                        borderRadius: '250px',
-                        background: `radial-gradient(circle, ${secondaryColor}30, transparent)`,
-                    }}
-                />
-
-                {/* Pattern overlay */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        opacity: 0.08,
-                        background: 'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,.2) 40px, rgba(255,255,255,.2) 80px)',
-                    }}
-                />
-
-                {/* Main container */}
+                {/* Main Card */}
                 <div
                     style={{
                         display: 'flex',
-                        width: '100%',
-                        height: '100%',
+                        flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        padding: '40px',
+                        background: 'white',
+                        borderRadius: '48px',
+                        padding: '60px',
+                        boxShadow: `0 40px 100px rgba(0,0,0,0.4)`,
                     }}
                 >
-                    {/* Card with dramatic shadow */}
+                    {/* Profile Picture */}
+                    <div
+                        style={{
+                            width: '120px',
+                            height: '120px',
+                            borderRadius: '60px',
+                            border: `5px solid ${accentColor}`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: gradient,
+                            fontSize: '60px',
+                        }}
+                    >
+                        🎯
+                    </div>
+
+                    {/* Username */}
+                    <div
+                        style={{
+                            fontSize: '48px',
+                            fontWeight: '900',
+                            color: '#1a1a1a',
+                            marginTop: '20px',
+                            display: 'flex',
+                        }}
+                    >
+                        @{data.username}
+                    </div>
+
+                    {/* Score */}
+                    <div
+                        style={{
+                            fontSize: '120px',
+                            fontWeight: '900',
+                            background: gradient,
+                            backgroundClip: 'text',
+                            color: 'transparent',
+                            marginTop: '10px',
+                            display: 'flex',
+                        }}
+                    >
+                        {data.result.score}
+                    </div>
+
+                    {/* Rank Badge */}
                     <div
                         style={{
                             display: 'flex',
-                            flexDirection: 'column',
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            background: 'linear-gradient(145deg, #ffffff, #f7f7f7)',
-                            borderRadius: '48px',
-                            padding: '50px 70px',
-                            boxShadow: `0 40px 100px rgba(0,0,0,0.5), 0 0 80px ${accentColor}60, inset 0 1px 0 rgba(255,255,255,0.9)`,
-                            border: '3px solid rgba(255,255,255,0.9)',
-                            position: 'relative',
-                            width: '880px',
+                            gap: '15px',
+                            marginTop: '10px',
+                            padding: '15px 40px',
+                            background: `linear-gradient(135deg, ${accentColor}20, ${secondaryColor}10)`,
+                            borderRadius: '40px',
+                            border: `3px solid ${accentColor}40`,
                         }}
                     >
-                        {/* Top decorative corners */}
+                        <div style={{ fontSize: '48px', display: 'flex' }}>{data.result.badge}</div>
                         <div
                             style={{
-                                position: 'absolute',
-                                top: '20px',
-                                left: '20px',
-                                width: '60px',
-                                height: '60px',
-                                borderTop: `5px solid ${accentColor}`,
-                                borderLeft: `5px solid ${accentColor}`,
-                                borderRadius: '12px 0 0 0',
-                            }}
-                        />
-                        <div
-                            style={{
-                                position: 'absolute',
-                                top: '20px',
-                                right: '20px',
-                                width: '60px',
-                                height: '60px',
-                                borderTop: `5px solid ${secondaryColor}`,
-                                borderRight: `5px solid ${secondaryColor}`,
-                                borderRadius: '0 12px 0 0',
-                            }}
-                        />
-
-                        {/* Profile Picture with layered glow */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                position: 'relative',
-                                marginTop: '10px',
-                            }}
-                        >
-                            {/* Outer glow layer 1 */}
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    width: '180px',
-                                    height: '180px',
-                                    borderRadius: '90px',
-                                    background: gradient,
-                                    opacity: 0.2,
-                                    top: '-30px',
-                                    left: '-30px',
-                                }}
-                            />
-                            {/* Outer glow layer 2 */}
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    width: '150px',
-                                    height: '150px',
-                                    borderRadius: '75px',
-                                    background: gradient,
-                                    opacity: 0.3,
-                                    top: '-15px',
-                                    left: '-15px',
-                                }}
-                            />
-
-                            {data.pfpUrl && (
-                                <img
-                                    src={data.pfpUrl}
-                                    alt="pfp"
-                                    width={120}
-                                    height={120}
-                                    style={{
-                                        borderRadius: '60px',
-                                        border: `5px solid ${accentColor}`,
-                                        boxShadow: `0 10px 30px rgba(0,0,0,0.3), 0 0 20px ${accentColor}80`,
-                                        position: 'relative',
-                                    }}
-                                />
-                            )}
-                        </div>
-
-                        {/* Username with gradient underline */}
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '25px' }}>
-                            <div
-                                style={{
-                                    fontSize: '56px',
-                                    fontWeight: '900',
-                                    color: '#1a1a1a',
-                                    letterSpacing: '-2px',
-                                }}
-                            >
-                                @{data.username}
-                            </div>
-                            <div
-                                style={{
-                                    width: '120px',
-                                    height: '4px',
-                                    background: gradient,
-                                    borderRadius: '2px',
-                                    marginTop: '8px',
-                                }}
-                            />
-                        </div>
-
-                        {/* Score - MASSIVE with shadow */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                position: 'relative',
-                                marginTop: '20px',
-                            }}
-                        >
-                            {/* Score shadow */}
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    fontSize: '160px',
-                                    fontWeight: '900',
-                                    background: gradient,
-                                    backgroundClip: 'text',
-                                    color: 'transparent',
-                                    opacity: 0.15,
-                                    top: '8px',
-                                    left: '8px',
-                                }}
-                            >
-                                {data.result.score}
-                            </div>
-                            <div
-                                style={{
-                                    fontSize: '160px',
-                                    fontWeight: '900',
-                                    background: gradient,
-                                    backgroundClip: 'text',
-                                    color: 'transparent',
-                                    lineHeight: 1,
-                                    position: 'relative',
-                                }}
-                            >
-                                {data.result.score}
-                            </div>
-                        </div>
-
-                        {/* Badge & Rank */}
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '20px',
-                                marginTop: '15px',
-                                padding: '18px 50px',
-                                background: `linear-gradient(135deg, ${accentColor}20, ${secondaryColor}10)`,
-                                borderRadius: '60px',
-                                border: `3px solid ${accentColor}40`,
-                                boxShadow: `0 8px 25px ${accentColor}30`,
-                            }}
-                        >
-                            <div style={{ fontSize: '56px' }}>{data.result.badge}</div>
-                            <div
-                                style={{
-                                    fontSize: '48px',
-                                    fontWeight: '900',
-                                    color: '#1a1a1a',
-                                    letterSpacing: '2px',
-                                }}
-                            >
-                                {data.result.rank.toUpperCase()}
-                            </div>
-                        </div>
-
-                        {/* Percentile badge */}
-                        <div
-                            style={{
-                                marginTop: '25px',
-                                padding: '14px 40px',
-                                background: gradient,
-                                borderRadius: '40px',
-                                fontSize: '24px',
+                                fontSize: '40px',
                                 fontWeight: '900',
-                                color: 'white',
-                                boxShadow: `0 6px 30px ${accentColor}70, inset 0 1px 0 rgba(255,255,255,0.3)`,
-                                letterSpacing: '1px',
+                                color: '#1a1a1a',
+                                display: 'flex',
                             }}
                         >
-                            TOP {data.result.percentile}% • FARCASTER
+                            {data.result.rank.toUpperCase()}
                         </div>
+                    </div>
 
-                        {/* Footer with line */}
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '30px' }}>
-                            <div
-                                style={{
-                                    width: '100px',
-                                    height: '2px',
-                                    background: `linear-gradient(90deg, transparent, ${accentColor}, transparent)`,
-                                    marginBottom: '12px',
-                                }}
-                            />
-                            <div
-                                style={{
-                                    fontSize: '18px',
-                                    color: '#a0aec0',
-                                    fontWeight: '700',
-                                    letterSpacing: '3px',
-                                }}
-                            >
-                                BASED ID
-                            </div>
-                        </div>
+                    {/* Percentile */}
+                    <div
+                        style={{
+                            marginTop: '20px',
+                            padding: '12px 30px',
+                            background: gradient,
+                            borderRadius: '30px',
+                            fontSize: '20px',
+                            fontWeight: '900',
+                            color: 'white',
+                            display: 'flex',
+                        }}
+                    >
+                        TOP {data.result.percentile}% • FARCASTER
+                    </div>
 
-                        {/* Bottom corners */}
-                        <div
-                            style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                left: '20px',
-                                width: '60px',
-                                height: '60px',
-                                borderBottom: `5px solid ${accentColor}`,
-                                borderLeft: `5px solid ${accentColor}`,
-                                borderRadius: '0 0 0 12px',
-                            }}
-                        />
-                        <div
-                            style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                right: '20px',
-                                width: '60px',
-                                height: '60px',
-                                borderBottom: `5px solid ${secondaryColor}`,
-                                borderRight: `5px solid ${secondaryColor}`,
-                                borderRadius: '0 0 12px 0',
-                            }}
-                        />
+                    {/* Footer */}
+                    <div
+                        style={{
+                            fontSize: '16px',
+                            color: '#a0aec0',
+                            fontWeight: '700',
+                            marginTop: '25px',
+                            display: 'flex',
+                        }}
+                    >
+                        BASED ID
                     </div>
                 </div>
             </div>
