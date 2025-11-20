@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { calculateBasedScore } from '@/lib/scoring';
+import { getBaseUrl } from '@/lib/url';
+
+const baseUrl = getBaseUrl();
 
 // Fetch real user data from Neynar API
 async function getUserStats(fid: number) {
@@ -85,21 +88,21 @@ export async function POST(req: NextRequest) {
             // Return the frame with the generated image
             return NextResponse.json({
                 version: 'vNext',
-                image: `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/og`,
+                image: `${baseUrl}/api/og`,
                 buttons: [
                     { label: '🔄 Refresh', action: 'post' },
-                    { label: '📤 Share', action: 'link', target: `https://warpcast.com/~/compose?text=I%20got%20${result.score}%20on%20Based%20ID!%20Check%20yours%20👉&embeds[]=${encodeURIComponent(process.env.NEXT_PUBLIC_URL || 'http://localhost:3000')}` },
+                    { label: '📤 Share', action: 'link', target: `https://warpcast.com/~/compose?text=I%20got%20${result.score}%20on%20Based%20ID!%20Check%20yours%20👉&embeds[]=${encodeURIComponent(baseUrl)}` },
                 ],
-                postUrl: `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/frames`,
+                postUrl: `${baseUrl}/api/frames`,
             });
         }
 
         // Default response
         return NextResponse.json({
             version: 'vNext',
-            image: `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/og`,
+            image: `${baseUrl}/api/og`,
             buttons: [{ label: '🔄 Try Again', action: 'post' }],
-            postUrl: `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/frames`,
+            postUrl: `${baseUrl}/api/frames`,
         });
     } catch (error) {
         console.error('Frame error:', error);

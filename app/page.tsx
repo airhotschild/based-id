@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { getBaseUrl } from "@/lib/url";
+
+const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
   title: "Based ID - Your Farcaster Identity Card",
@@ -6,13 +9,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Based ID - Your Farcaster Identity Card",
     description: "Check your Based Score and get your identity card!",
-    images: [`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/og`],
+    images: [`${baseUrl}/api/og`],
   },
   other: {
     'fc:frame': 'vNext',
-    'fc:frame:image': `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/og`,
+    'fc:frame:image': `${baseUrl}/api/og`,
     'fc:frame:button:1': '✨ Check My Based ID',
-    'fc:frame:post_url': `${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/frames`,
+    'fc:frame:post_url': `${baseUrl}/api/frames`,
   },
 };
 
