@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateCardImage } from '@/lib/image-gen';
 import { calculateBasedScore } from '@/lib/scoring';
 
+export const runtime = 'edge';
+
 // Fetch real user data from Neynar API
 async function getUserStats(fid: number) {
     try {
