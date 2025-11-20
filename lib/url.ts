@@ -13,7 +13,12 @@ export function getBaseUrl(): string {
     return process.env.NEXT_PUBLIC_URL;
   }
 
-  // Fallback to Vercel URL (automatically set by Vercel)
+  // On Vercel production (not preview)
+  if (process.env.VERCEL_ENV === 'production') {
+    return 'https://based-id-puce.vercel.app';
+  }
+
+  // Fallback to Vercel URL for preview deployments
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
