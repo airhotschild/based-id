@@ -18,16 +18,27 @@ const baseUrl = getBaseUrl();
 export const metadata: Metadata = {
   title: "Based ID - Your Farcaster Identity Card",
   description: "Discover your Based Score and rank on Farcaster!",
+  manifest: `${baseUrl}/.well-known/farcaster.json`,
   openGraph: {
     title: "Based ID - Your Farcaster Identity Card",
     description: "Check your Based Score and get your identity card!",
     images: [`${baseUrl}/api/og`],
   },
   other: {
-    'fc:frame': 'vNext',
-    'fc:frame:image': `${baseUrl}/api/og`,
-    'fc:frame:button:1': '✨ Check My Based ID',
-    'fc:frame:post_url': `${baseUrl}/api/frames`,
+    'fc:miniapp': JSON.stringify({
+      version: "1",
+      imageUrl: `${baseUrl}/api/og`,
+      button: {
+        title: "✨ Based ID",
+        action: {
+          type: "launch_frame",
+          name: "Based ID",
+          url: baseUrl,
+          splashImageUrl: `${baseUrl}/icon.png`,
+          splashBackgroundColor: "#1a1a1a"
+        }
+      }
+    }),
   },
 };
 
